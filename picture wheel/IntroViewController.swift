@@ -8,12 +8,19 @@
 
 import UIKit
 
-class IntroViewController: UIViewController {
+class IntroViewController: UIViewController, UIScrollViewDelegate {
+
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var introImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.contentSize = introImageView.image!.size
+        
+        scrollView.delegate = self
+        
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +28,13 @@ class IntroViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView){
+        print("user scrolled")
+    }
+    
+    @IBAction func onSignInButton(sender: AnyObject) {
+        performSegueWithIdentifier("SignInSegue", sender: self)
+    }
 
     /*
     // MARK: - Navigation

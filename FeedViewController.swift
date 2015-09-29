@@ -10,8 +10,23 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBAction func onProfileButton(sender: AnyObject) {
+        performSegueWithIdentifier("profileSegue", sender:nil)
+    }
+    
+    
+    @IBAction func onConvoButton(sender: AnyObject) {
+        performSegueWithIdentifier("convoSegue", sender:nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView.contentSize = imageView.image!.size
 
         // Do any additional setup after loading the view.
     }

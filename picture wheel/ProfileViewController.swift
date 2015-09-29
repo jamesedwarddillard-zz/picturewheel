@@ -10,8 +10,25 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    @IBAction func onXButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true,completion: nil)
+    }
+    
+    @IBAction func onSignOutButton(sender: AnyObject) {
+        performSegueWithIdentifier("signOutSegue", sender: nil)
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scrollView.contentSize = imageView.image!.size
+        
 
         // Do any additional setup after loading the view.
     }

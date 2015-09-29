@@ -8,12 +8,16 @@
 
 import UIKit
 
-class tutorialViewController: UIViewController {
+class tutorialViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var tutorialScrollView: UIScrollView!
+    
+    @IBOutlet weak var tutorialPageControl: UIPageControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tutorialScrollView.contentSize = CGSize(width: 1280, height: 500)
+        tutorialScrollView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +25,18 @@ class tutorialViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func scrollViewDidEndDecelerating(tutorialScrollView: UIScrollView) {
+        var page : Int = Int(round(tutorialScrollView.contentOffset.x/320))
+        tutorialPageControl.currentPage = page
+        
+        if page == 3 {
+            tutorialPageControl.hidden = true
+        }
+    }
+    
+    @IBAction func onSpinButton(sender: AnyObject) {
+        performSegueWithIdentifier("spinSegue", sender: self)
+    }
 
     /*
     // MARK: - Navigation
